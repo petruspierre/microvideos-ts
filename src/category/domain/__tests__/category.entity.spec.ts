@@ -189,4 +189,46 @@ describe('Category validator', () => {
       })
     })
   })
+
+  describe('changeName', () => {
+    it('should throw when name is invalid', () => {
+      const category = new Category({
+        name: 'Movie'
+      });
+
+      expect(() => category.changeName(null)).containsErrorMessages({
+        name: [
+          "name should not be empty",
+          "name must be a string",
+          "name must be shorter than or equal to 255 characters"
+        ]
+      })
+
+      expect(() => category.changeName('')).containsErrorMessages({
+        name: [
+          "name should not be empty"
+        ]
+      })
+
+      expect(() => category.changeName('a'.repeat(256))).containsErrorMessages({
+        name: [
+          "name must be shorter than or equal to 255 characters"
+        ]
+      })
+    })
+  })
+
+  describe('changeDescription', () => {
+    it('should throw when description is invalid', () => {
+      const category = new Category({
+        name: 'Movie'
+      });
+
+      expect(() => category.changeDescription(123 as any)).containsErrorMessages({
+        description: [
+          "description must be a string"
+        ]
+      })
+    })
+  })
 })
