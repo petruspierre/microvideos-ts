@@ -1,14 +1,13 @@
-import { Entity } from "../../../../domain/entity";
-import { NotFoundError } from "../../../../domain/errors/not-found.error";
-import { ValueObject } from "../../../../domain/value-object";
-import { Uuid } from "../../../../domain/value-objects/uuid.vo";
-import { InMemoryRepository } from "../in-memory.repository";
+import { Entity } from '../../../../domain/entity';
+import { NotFoundError } from '../../../../domain/errors/not-found.error';
+import { Uuid } from '../../../../domain/value-objects/uuid.vo';
+import { InMemoryRepository } from '../in-memory.repository';
 
 type StubEntityProps = {
   entity_id?: Uuid;
   name: string;
   price: number;
-}
+};
 
 class StubEntity extends Entity {
   entity_id: Uuid;
@@ -27,8 +26,8 @@ class StubEntity extends Entity {
     return {
       entity_id: this.entity_id.id,
       name: this.name,
-      price: this.price
-    }
+      price: this.price,
+    };
   }
 }
 
@@ -43,42 +42,42 @@ describe('InMemoryRepositoyr unit tests', () => {
 
   beforeEach(() => {
     repository = new StubInMemoryRepository();
-  })
+  });
 
   test('should insert a new entity', async () => {
     const entity = new StubEntity({
       name: 'Stub entity',
-      price: 100
+      price: 100,
     });
 
     await repository.insert(entity);
 
     expect(repository.items).toHaveLength(1);
     expect(repository.items[0]).toBe(entity);
-  })
+  });
 
   test('should bulk insert entities', async () => {
     const entities = [
       new StubEntity({
         name: 'Stub entity 1',
-        price: 100
+        price: 100,
       }),
       new StubEntity({
         name: 'Stub entity 2',
-        price: 200
-      })
+        price: 200,
+      }),
     ];
 
     await repository.bulkInsert(entities);
 
     expect(repository.items).toHaveLength(2);
     expect(repository.items).toEqual(entities);
-  })
+  });
 
   test('should find entity by id', async () => {
     const entity = new StubEntity({
       name: 'Stub entity',
-      price: 100
+      price: 100,
     });
 
     await repository.insert(entity);
@@ -86,7 +85,7 @@ describe('InMemoryRepositoyr unit tests', () => {
     const foundEntity = await repository.findById(entity.entity_id);
 
     expect(foundEntity).toBe(entity);
-  })
+  });
 
   test('shoudl return null when entity is not found', async () => {
     const id = new Uuid();
@@ -94,12 +93,12 @@ describe('InMemoryRepositoyr unit tests', () => {
     const foundEntity = await repository.findById(id);
 
     expect(foundEntity).toBeNull();
-  })
+  });
 
   test('should update entity', async () => {
     const entity = new StubEntity({
       name: 'Stub entity',
-      price: 100
+      price: 100,
     });
 
     await repository.insert(entity);
@@ -114,21 +113,23 @@ describe('InMemoryRepositoyr unit tests', () => {
     expect(updatedEntity).toBe(entity);
     expect(updatedEntity.name).toBe('Updated entity');
     expect(updatedEntity.price).toBe(200);
-  })
+  });
 
   test('should throw NotFoundError when entity is not found', async () => {
     const entity = new StubEntity({
       name: 'Stub entity',
-      price: 100
+      price: 100,
     });
 
-    await expect(repository.update(entity)).rejects.toThrow(new NotFoundError(entity.entity_id, StubEntity));
-  })
+    await expect(repository.update(entity)).rejects.toThrow(
+      new NotFoundError(entity.entity_id, StubEntity),
+    );
+  });
 
   test('should delete entity', async () => {
     const entity = new StubEntity({
       name: 'Stub entity',
-      price: 100
+      price: 100,
     });
 
     await repository.insert(entity);
@@ -138,11 +139,13 @@ describe('InMemoryRepositoyr unit tests', () => {
     const foundEntity = await repository.findById(entity.entity_id);
 
     expect(foundEntity).toBeNull();
-  })
+  });
 
   test('should throw NotFoundError when entity is not found', async () => {
     const id = new Uuid();
 
-    await expect(repository.delete(id)).rejects.toThrow(new NotFoundError(id, StubEntity));
-  })
-})
+    await expect(repository.delete(id)).rejects.toThrow(
+      new NotFoundError(id, StubEntity),
+    );
+  });
+});

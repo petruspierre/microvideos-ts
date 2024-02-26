@@ -1,4 +1,4 @@
-import { Category } from "../../../domain/category.entity";
+import { Category } from '../../../domain/category.entity';
 
 export type CategoryOutput = {
   id: string;
@@ -10,6 +10,7 @@ export type CategoryOutput = {
 
 export class CategoryOutputMapper {
   static toOutput(entity: Category): CategoryOutput {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { category_id, ...otherProps } = entity.toJSON();
     return {
       id: entity.category_id.id,

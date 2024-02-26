@@ -16,7 +16,9 @@ describe('CategoryModelMapper Integration Tests', () => {
     });
     try {
       CategoryModelMapper.toEntity(model);
-      fail('The category is valid, but it needs throws a EntityValidationError');
+      fail(
+        'The category is valid, but it needs throws a EntityValidationError',
+      );
     } catch (e) {
       expect(e).toBeInstanceOf(EntityValidationError);
       expect((e as EntityValidationError).error).toMatchObject([

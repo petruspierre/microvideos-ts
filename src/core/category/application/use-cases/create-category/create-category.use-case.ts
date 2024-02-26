@@ -1,9 +1,9 @@
-import { IUseCase } from "../../../../shared/application/use-case.interface";
-import { EntityValidationError } from "../../../../shared/domain/validators/validation.error";
-import { Category } from "../../../domain/category.entity";
-import { ICategoryRepository } from "../../../domain/category.repository";
-import { CategoryOutput } from "../common/category-output-mapper";
-import { CreateCategoryInput } from "./create-category.input";
+import { IUseCase } from '../../../../shared/application/use-case.interface';
+import { EntityValidationError } from '../../../../shared/domain/validators/validation.error';
+import { Category } from '../../../domain/category.entity';
+import { ICategoryRepository } from '../../../domain/category.repository';
+import { CategoryOutput } from '../common/category-output-mapper';
+import { CreateCategoryInput } from './create-category.input';
 
 export type CreateCategoryOutput = CategoryOutput;
 

@@ -1,4 +1,4 @@
-import { ValueObject } from "../value-object";
+import { ValueObject } from '../value-object';
 
 class StringValueObject extends ValueObject {
   constructor(readonly value: string) {
@@ -38,7 +38,9 @@ describe('ValueObject unit tests', () => {
       const valueObject1 = new StringValueObject('test');
       const valueObject2 = { value: 'test' };
 
-      expect(valueObject1.equals(valueObject2 as StringValueObject)).toBe(false);
+      expect(valueObject1.equals(valueObject2 as StringValueObject)).toBe(
+        false,
+      );
     });
-  })
-})
+  });
+});
