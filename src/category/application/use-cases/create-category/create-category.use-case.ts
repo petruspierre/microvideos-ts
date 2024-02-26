@@ -1,20 +1,11 @@
-import { IUseCase } from "../../../shared/application/use-case.interface";
-import { Category } from "../../domain/category.entity";
-import { ICategoryRepository } from "../../domain/category.repository";
+import { IUseCase } from "../../../../shared/application/use-case.interface";
+import { EntityValidationError } from "../../../../shared/domain/validators/validation.error";
+import { Category } from "../../../domain/category.entity";
+import { ICategoryRepository } from "../../../domain/category.repository";
+import { CategoryOutput } from "../common/category-output-mapper";
+import { CreateCategoryInput } from "./create-category.input";
 
-export type CreateCategoryInput = {
-  name: string;
-  description?: string | null;
-  is_active?: boolean;
-};
-
-export type CreateCategoryOutput = {
-  id: string;
-  name: string;
-  description: string | null;
-  is_active: boolean;
-  created_at: Date;
-};
+export type CreateCategoryOutput = CategoryOutput;
 
 export class CreateCategoryUseCase
   implements IUseCase<CreateCategoryInput, CreateCategoryOutput>
@@ -27,6 +18,10 @@ export class CreateCategoryUseCase
       description: input.description,
       is_active: input.is_active,
     });
+
+    if (entity.notification.hasErrors()) {
+      throw new EntityValidationError(entity.notification.toJSON());
+    }
 
     await this.categoryRepository.insert(entity);
 
