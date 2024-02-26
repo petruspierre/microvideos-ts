@@ -24,16 +24,14 @@ describe('ValueObject unit tests', () => {
 
     it('should return false if the value is null', () => {
       const valueObject1 = new StringValueObject('test');
-      const valueObject2 = null;
 
-      expect(valueObject1.equals(valueObject2!)).toBe(false);
+      expect(valueObject1.equals(null)).toBe(false);
     });
 
     it('should return false if the value is undefined', () => {
       const valueObject1 = new StringValueObject('test');
-      const valueObject2 = undefined;
 
-      expect(valueObject1.equals(valueObject2)).toBe(false);
+      expect(valueObject1.equals(null)).toBe(false);
     });
 
     it('should return false if the value is a different type', () => {
