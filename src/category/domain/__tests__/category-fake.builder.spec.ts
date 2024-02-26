@@ -6,7 +6,7 @@ describe('CategoryFakerBuilder Unit Tests', () => {
   describe('category_id prop', () => {
     const faker = CategoryFakeBuilder.aCategory();
 
-    test('should throw error when any with methods have been called', () => {
+    test('should throw error when any with methods has called', () => {
       expect(() => faker.category_id).toThrow(
         new Error(
           "Property category_id not have a factory, use 'with' methods",
@@ -31,7 +31,8 @@ describe('CategoryFakerBuilder Unit Tests', () => {
       expect(faker.category_id).toBe(category_id);
     });
 
-    test('should pass factory to category_id property', () => {
+    //TODO - melhorar este nome
+    test('should pass index to category_id factory', () => {
       let mockFactory = jest.fn(() => new Uuid());
       faker.withUuid(mockFactory);
       faker.build();
@@ -167,7 +168,7 @@ describe('CategoryFakerBuilder Unit Tests', () => {
 
     test('should throw error when any with methods has called', () => {
       const fakerCategory = CategoryFakeBuilder.aCategory();
-      expect(() => fakerCategory.created_at).toThrowError(
+      expect(() => fakerCategory.created_at).toThrow(
         new Error("Property created_at not have a factory, use 'with' methods"),
       );
     });
