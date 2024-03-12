@@ -71,7 +71,7 @@ export class CategoriesController {
   }
 
   @Get(':id')
-  async get(
+  async findOne(
     @Param('id', new ParseUUIDPipe({ errorHttpStatusCode: 422 })) id: string,
   ) {
     const output = await this.getUseCase.execute({ id });
