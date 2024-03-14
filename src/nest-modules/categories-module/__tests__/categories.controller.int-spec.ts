@@ -10,8 +10,15 @@ import { UpdateCategoryUseCase } from '../../../core/category/application/use-ca
 import { ListCategoriesUseCase } from '../../../core/category/application/use-cases/list-categories/list-categories.use-case';
 import { GetCategoryUseCase } from '../../../core/category/application/use-cases/get-category/get-category.use-case';
 import { DeleteCategoryUseCase } from '../../../core/category/application/use-cases/delete-category/delete-category.use-case';
-import { CreateCategoryFixture, ListCategoriesFixture, UpdateCategoryFixture } from '../testing/category-fixture';
-import { CategoryCollectionPresenter, CategoryPresenter } from '../categories.presenter';
+import {
+  CreateCategoryFixture,
+  ListCategoriesFixture,
+  UpdateCategoryFixture,
+} from '../testing/category-fixture';
+import {
+  CategoryCollectionPresenter,
+  CategoryPresenter,
+} from '../categories.presenter';
 import { CategoryOutputMapper } from '@core/category/application/use-cases/common/category-output-mapper';
 import { Uuid } from '@core/shared/domain/value-objects/uuid.vo';
 import { Category } from '@core/category/domain/category.entity';
@@ -22,11 +29,7 @@ describe('CategoriesController Integration Tests', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        ConfigModule.forRoot(),
-        DatabaseModule,
-        CategoriesModule,
-      ],
+      imports: [ConfigModule.forRoot(), DatabaseModule, CategoriesModule],
     }).compile();
     controller = module.get<CategoriesController>(CategoriesController);
     repository = module.get<ICategoryRepository>(
@@ -46,18 +49,21 @@ describe('CategoriesController Integration Tests', () => {
   describe('should create a category', () => {
     const arrange = CreateCategoryFixture.arrangeForCreate();
 
-    test.each(arrange)('when body is $send_data', async ({ send_data, expected}) => {
-      const presenter = await controller.create(send_data)
-      const entity = await repository.findById(new Uuid(presenter.id))
-      expect(entity.toJSON()).toStrictEqual({
-        category_id: presenter.id,
-        created_at: presenter.created_at,
-        ...expected
-      })
-      const output = CategoryOutputMapper.toOutput(entity)
-      expect(presenter).toEqual(new CategoryPresenter(output))
-    })
-  })
+    test.each(arrange)(
+      'when body is $send_data',
+      async ({ send_data, expected }) => {
+        const presenter = await controller.create(send_data);
+        const entity = await repository.findById(new Uuid(presenter.id));
+        expect(entity.toJSON()).toStrictEqual({
+          category_id: presenter.id,
+          created_at: presenter.created_at,
+          ...expected,
+        });
+        const output = CategoryOutputMapper.toOutput(entity);
+        expect(presenter).toEqual(new CategoryPresenter(output));
+      },
+    );
+  });
 
   describe('should update a category', () => {
     const arrange = UpdateCategoryFixture.arrangeForUpdate();
