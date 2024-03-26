@@ -1,4 +1,4 @@
-import { Entity } from '../../shared/domain/entity';
+import { AggregateRoot } from '@core/shared/domain/aggregate-root';
 import { Uuid } from '../../shared/domain/value-objects/uuid.vo';
 import { CategoryFakeBuilder } from './category-fake.builder';
 import { CategoryValidatorFactory } from './category.validator';
@@ -19,7 +19,7 @@ export type CategoryCreateCommand = {
 
 export class CategoryId extends Uuid {}
 
-export class Category extends Entity {
+export class Category extends AggregateRoot {
   category_id: CategoryId;
   name: string;
   description: string | null;
