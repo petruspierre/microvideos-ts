@@ -88,6 +88,8 @@ export class SearchParams<Filter = string> extends ValueObject {
     this._filter =
       value === null || value === undefined || (value as unknown) === ''
         ? null
-        : (`${value}` as any);
+        : typeof value === 'object'
+          ? value
+          : `${value}`;
   }
 }

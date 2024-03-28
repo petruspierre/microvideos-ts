@@ -128,14 +128,14 @@ describe('SearchParams Unit Tests', () => {
       { filter: 5.5, expected: '5.5' },
       { filter: true, expected: 'true' },
       { filter: false, expected: 'false' },
-      { filter: {}, expected: '[object Object]' },
+      { filter: { name: 'name' }, expected: { name: 'name' } },
       { filter: 'field', expected: 'field' },
     ];
 
     arrange.forEach((i) => {
-      expect(new SearchParams({ filter: i.filter as any }).filter).toBe(
-        i.expected,
-      );
+      expect(
+        new SearchParams({ filter: i.filter as any }).filter,
+      ).toStrictEqual(i.expected);
     });
   });
 });

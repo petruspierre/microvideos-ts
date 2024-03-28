@@ -35,6 +35,14 @@ export class CastMember extends AggregateRoot {
     return this.cast_member_id;
   }
 
+  changeName(name: string) {
+    this.name = name;
+  }
+
+  changeType(type: CastMemberType) {
+    this.type = type;
+  }
+
   static create(props: CastMemberConstructorProps): CastMember {
     const castMember = new CastMember(props);
     castMember.validate();

@@ -33,4 +33,26 @@ describe('CastMember unit tests', () => {
       expect(castMember.created_at).toBeInstanceOf(Date);
     });
   });
+
+  describe('changeName', () => {
+    it('should change the name', () => {
+      const castMember = new CastMember({
+        name: 'Jim Carrey',
+        type: CastMemberType.ACTOR,
+      });
+      castMember.changeName('Tom Hanks');
+      expect(castMember.name).toBe('Tom Hanks');
+    });
+  });
+
+  describe('changeType', () => {
+    it('should change the type', () => {
+      const castMember = new CastMember({
+        name: 'Jim Carrey',
+        type: CastMemberType.ACTOR,
+      });
+      castMember.changeType(CastMemberType.DIRECTOR);
+      expect(castMember.type).toBe(CastMemberType.DIRECTOR);
+    });
+  });
 });
