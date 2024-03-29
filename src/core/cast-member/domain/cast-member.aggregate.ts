@@ -37,6 +37,7 @@ export class CastMember extends AggregateRoot {
 
   changeName(name: string) {
     this.name = name;
+    this.validate(['name']);
   }
 
   changeType(type: CastMemberType) {
