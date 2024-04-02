@@ -2,7 +2,7 @@ import { ValueObject } from '../value-object';
 
 export type SortDirection = 'asc' | 'desc';
 
-export type SearchParamsConstructorProps<Filter = string> = {
+export type SearchParamsConstructorProps<Filter = unknown> = {
   page?: number;
   per_page?: number;
   sort?: string | null;
@@ -10,7 +10,7 @@ export type SearchParamsConstructorProps<Filter = string> = {
   filter?: Filter | null;
 };
 
-export class SearchParams<Filter = string> extends ValueObject {
+export class SearchParams<Filter = unknown> extends ValueObject {
   protected _page: number;
   protected _per_page: number = 15;
   protected _sort: string | null;
@@ -88,8 +88,6 @@ export class SearchParams<Filter = string> extends ValueObject {
     this._filter =
       value === null || value === undefined || (value as unknown) === ''
         ? null
-        : typeof value === 'object'
-          ? value
-          : `${value}`;
+        : value;
   }
 }

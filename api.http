@@ -12,3 +12,18 @@ GET http://localhost:3000/categories
 
 ### Get category
 GET http://localhost:3000/categories/adb3e3e3-3e3e-3e3e-3e3e-3e3e3e3e3e3e
+
+### List cast members
+GET http://localhost:3000/cast-members
+
+### Create cast member
+POST http://localhost:3000/cast-members
+Content-Type: application/json
+
+{
+  "name": "Tom Hanks",
+  "type": 1
+}
+
+### Delete cast member
+DELETE http://localhost:3000/cast-members/47284cf1-6bb1-4f1a-b122-c68d836a5e08

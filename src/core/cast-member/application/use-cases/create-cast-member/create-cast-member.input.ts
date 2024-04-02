@@ -1,5 +1,11 @@
 import { CastMemberType } from '@core/cast-member/domain/cast-member.aggregate';
-import { IsNotEmpty, IsNumber, IsString, validateSync } from 'class-validator';
+import {
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  validateSync,
+} from 'class-validator';
 
 export type CreateCastMemberInputConstructorProps = {
   name: string;
@@ -13,6 +19,7 @@ export class CreateCastMemberInput {
 
   @IsNumber()
   @IsNotEmpty()
+  @IsEnum(CastMemberType)
   type: CastMemberType;
 
   constructor(props: CreateCastMemberInputConstructorProps) {

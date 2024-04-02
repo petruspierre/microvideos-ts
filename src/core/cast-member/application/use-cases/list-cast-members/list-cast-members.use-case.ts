@@ -9,19 +9,11 @@ import {
   PaginationOutputMapper,
 } from '@core/shared/application/pagination-output-mapper';
 import { IUseCase } from '@core/shared/application/use-case.interface';
-import { SortDirection } from '@core/shared/domain/repository/search-params';
 import {
   CastMemberOutput,
   CastMemberOutputMapper,
 } from '../common/cast-member-output-mapper';
-
-export type ListCastMembersInput = {
-  page?: number;
-  per_page?: number;
-  sort?: string | null;
-  sort_dir?: SortDirection | null;
-  filter?: CastMemberFilter | null;
-};
+import { ListCastMembersInput } from './list-cast-member.input';
 
 export type ListCastMembersOutput = PaginationOutput<CastMemberOutput>;
 
