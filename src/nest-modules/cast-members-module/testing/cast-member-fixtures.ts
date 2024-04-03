@@ -48,7 +48,13 @@ export class CreateCastMemberFixture {
         send_data: {},
         expected: {
           ...defaultExpected,
-          message: ['name should not be empty', 'type should not be empty'],
+          message: [
+            'name should not be empty',
+            'name must be a string',
+            'type must be one of the following values: 1, 2',
+            'type should not be empty',
+            'type must be a number conforming to the specified constraints',
+          ],
         },
       },
       NAME_UNDEFINED: {
@@ -58,7 +64,7 @@ export class CreateCastMemberFixture {
         },
         expected: {
           ...defaultExpected,
-          message: ['name should not be empty', 'name bust be a string'],
+          message: ['name should not be empty', 'name must be a string'],
         },
       },
       NAME_NULL: {
@@ -89,8 +95,8 @@ export class CreateCastMemberFixture {
         expected: {
           ...defaultExpected,
           message: [
-            'type should not be empty',
             'type must be one of the following values: 1, 2',
+            'type should not be empty',
             'type must be a number conforming to the specified constraints',
           ],
         },
@@ -103,8 +109,8 @@ export class CreateCastMemberFixture {
         expected: {
           ...defaultExpected,
           message: [
-            'type should not be empty',
             'type must be one of the following values: 1, 2',
+            'type should not be empty',
             'type must be a number conforming to the specified constraints',
           ],
         },
@@ -117,8 +123,8 @@ export class CreateCastMemberFixture {
         expected: {
           ...defaultExpected,
           message: [
-            'type should not be empty',
             'type must be one of the following values: 1, 2',
+            'type should not be empty',
             'type must be a number conforming to the specified constraints',
           ],
         },
@@ -130,11 +136,7 @@ export class CreateCastMemberFixture {
         },
         expected: {
           ...defaultExpected,
-          message: [
-            'type should not be empty',
-            'type must be one of the following values: 1, 2',
-            'type must be a number conforming to the specified constraints',
-          ],
+          message: ['type must be one of the following values: 1, 2'],
         },
       },
     };
