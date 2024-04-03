@@ -10,7 +10,7 @@ export type SearchParamsConstructorProps<Filter = unknown> = {
   filter?: Filter | null;
 };
 
-export class SearchParams<Filter = unknown> extends ValueObject {
+export class SearchParams<Filter = string> extends ValueObject {
   protected _page: number;
   protected _per_page: number = 15;
   protected _sort: string | null;
@@ -88,6 +88,8 @@ export class SearchParams<Filter = unknown> extends ValueObject {
     this._filter =
       value === null || value === undefined || (value as unknown) === ''
         ? null
-        : value;
+        : typeof value === 'object'
+          ? (value as any)
+          : (`${value}` as any);
   }
 }
