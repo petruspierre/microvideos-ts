@@ -21,12 +21,12 @@ export class UpdateCastMemberInput {
 
   @IsString()
   @IsOptional()
-  name: string;
+  name?: string;
 
   @IsNumber()
   @IsEnum(CastMemberType)
   @IsOptional()
-  type: CastMemberType;
+  type?: CastMemberType;
 
   constructor(props?: UpdateCastMemberInputConstructorProps) {
     if (!props) return;
