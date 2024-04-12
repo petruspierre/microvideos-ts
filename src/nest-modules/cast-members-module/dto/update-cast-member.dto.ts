@@ -3,7 +3,7 @@ import { UpdateCastMemberInput } from '../../../core/cast-member/application/use
 
 export class UpdateCastMemberInputWithoutId extends OmitType(
   UpdateCastMemberInput,
-  ['id'] as any,
+  ['id'] as const,
 ) {}
 
 export class UpdateCastMemberDto extends UpdateCastMemberInputWithoutId {}

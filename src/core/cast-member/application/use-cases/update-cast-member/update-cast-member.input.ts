@@ -2,6 +2,7 @@ import { CastMemberType } from '@core/cast-member/domain/cast-member.aggregate';
 import {
   IsEnum,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
   validateSync,
@@ -20,18 +21,18 @@ export class UpdateCastMemberInput {
 
   @IsString()
   @IsOptional()
-  name?: string;
+  name: string;
 
-  @IsString()
-  @IsOptional()
+  @IsNumber()
   @IsEnum(CastMemberType)
-  type?: CastMemberType;
+  @IsOptional()
+  type: CastMemberType;
 
   constructor(props?: UpdateCastMemberInputConstructorProps) {
     if (!props) return;
     this.id = props.id;
-    props.name && (this.name = props.name);
-    props.type && (this.type = props.type);
+    this.name = props.name;
+    this.type = props.type;
   }
 }
 

@@ -7,8 +7,8 @@ class CastMemberRules {
   @MaxLength(255, { groups: ['name'] })
   name: string;
 
-  constructor({ name, type }: CastMember) {
-    Object.assign(this, { name, type });
+  constructor({ name }: CastMember) {
+    Object.assign(this, { name });
   }
 }
 

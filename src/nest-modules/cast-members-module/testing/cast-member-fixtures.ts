@@ -207,40 +207,6 @@ export class UpdateCastMemberFixture {
     };
 
     return {
-      NAME_NULL: {
-        send_data: {
-          name: null,
-          type: CastMemberType.ACTOR,
-        },
-        expected: {
-          ...defaultExpected,
-          message: ['name should not be empty', 'name must be a string'],
-        },
-      },
-      NAME_EMPTY: {
-        send_data: {
-          name: '',
-          type: CastMemberType.ACTOR,
-        },
-        expected: {
-          ...defaultExpected,
-          message: ['name should not be empty'],
-        },
-      },
-      TYPE_NULL: {
-        send_data: {
-          name: 'Ryan Gosling',
-          type: null,
-        },
-        expected: {
-          ...defaultExpected,
-          message: [
-            'type should not be empty',
-            'type must be one of the following values: 1, 2',
-            'type must be a number conforming to the specified constraints',
-          ],
-        },
-      },
       TYPE_EMPTY: {
         send_data: {
           name: 'Ryan Gosling',
@@ -249,7 +215,6 @@ export class UpdateCastMemberFixture {
         expected: {
           ...defaultExpected,
           message: [
-            'type should not be empty',
             'type must be one of the following values: 1, 2',
             'type must be a number conforming to the specified constraints',
           ],
@@ -263,7 +228,6 @@ export class UpdateCastMemberFixture {
         expected: {
           ...defaultExpected,
           message: [
-            'type should not be empty',
             'type must be one of the following values: 1, 2',
             'type must be a number conforming to the specified constraints',
           ],

@@ -18,12 +18,16 @@ describe('UpdateCastMemberUseCase unit tests', () => {
   });
 
   it('should throw an error when the entity is not found', async () => {
-    await expect(() => useCase.execute({ id: 'fake id' })).rejects.toThrow(
-      InvalidUuidError,
-    );
+    await expect(() =>
+      useCase.execute({ id: 'fake id', name: 'test', type: 1 }),
+    ).rejects.toThrow(InvalidUuidError);
 
     await expect(() =>
-      useCase.execute({ id: '9d0c7636-2976-4225-90a8-1ff7478b034b' }),
+      useCase.execute({
+        id: '9d0c7636-2976-4225-90a8-1ff7478b034b',
+        name: 'test',
+        type: 1,
+      }),
     ).rejects.toThrow(NotFoundError);
   });
 
@@ -35,6 +39,7 @@ describe('UpdateCastMemberUseCase unit tests', () => {
       useCase.execute({
         id: aggregate.cast_member_id.id,
         name: 't'.repeat(256),
+        type: aggregate.type,
       }),
     ).rejects.toThrow(EntityValidationError);
   });
