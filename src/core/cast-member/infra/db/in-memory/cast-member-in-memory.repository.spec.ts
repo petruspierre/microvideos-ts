@@ -16,7 +16,7 @@ describe('CastMemberInMemoryRepository', () => {
       const items = [CastMember.fake().one().build()];
       const filterSpy = jest.spyOn(items, 'filter' as any);
 
-      const itemsFiltered = await repository['applyFilter'](items, null);
+      const itemsFiltered = await repository['applyFilter'](items, null as any);
       expect(filterSpy).not.toHaveBeenCalled();
       expect(itemsFiltered).toStrictEqual(items);
     });
@@ -91,7 +91,7 @@ describe('CastMemberInMemoryRepository', () => {
           .build(),
       ];
 
-      const itemsSorted = await repository['applySort'](items, null, null);
+      const itemsSorted = await repository['applySort'](items, '', 'desc');
       expect(itemsSorted).toStrictEqual([items[2], items[1], items[0]]);
     });
 

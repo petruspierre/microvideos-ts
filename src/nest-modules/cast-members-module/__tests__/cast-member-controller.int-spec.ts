@@ -59,7 +59,7 @@ describe('CastMemberController integration tests', () => {
         const entity = await repository.findById(
           new CastMemberId(presenter.id),
         );
-        expect(entity.toJSON()).toStrictEqual({
+        expect(entity!.toJSON()).toStrictEqual({
           cast_member_id: presenter.id,
           created_at: presenter.created_at,
           ...expected,
@@ -89,7 +89,7 @@ describe('CastMemberController integration tests', () => {
         const entity = await repository.findById(
           new CastMemberId(presenter.id),
         );
-        expect(entity.toJSON()).toStrictEqual({
+        expect(entity!.toJSON()).toStrictEqual({
           cast_member_id: presenter.id,
           created_at: presenter.created_at,
           ...expected,

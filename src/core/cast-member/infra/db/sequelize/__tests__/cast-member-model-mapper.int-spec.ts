@@ -13,6 +13,8 @@ describe('CastMemberModelMapper Integration Tests', () => {
       const model = CastMemberModel.build({
         cast_member_id: '4615d0b5-60e1-4569-bddb-e3096416296e',
         name: 'a'.repeat(256),
+        created_at: new Date(),
+        type: CastMemberType.ACTOR,
       });
 
       try {

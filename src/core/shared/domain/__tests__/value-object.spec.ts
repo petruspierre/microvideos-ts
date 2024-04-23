@@ -25,13 +25,13 @@ describe('ValueObject unit tests', () => {
     it('should return false if the value is null', () => {
       const valueObject1 = new StringValueObject('test');
 
-      expect(valueObject1.equals(null)).toBe(false);
+      expect(valueObject1.equals(null as any)).toBe(false);
     });
 
     it('should return false if the value is undefined', () => {
       const valueObject1 = new StringValueObject('test');
 
-      expect(valueObject1.equals(null)).toBe(false);
+      expect(valueObject1.equals(null as any)).toBe(false);
     });
 
     it('should return false if the value is a different type', () => {

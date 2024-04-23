@@ -111,8 +111,8 @@ describe('InMemoryRepositoyr unit tests', () => {
     const updatedEntity = await repository.findById(entity.entity_id);
 
     expect(updatedEntity).toBe(entity);
-    expect(updatedEntity.name).toBe('Updated entity');
-    expect(updatedEntity.price).toBe(200);
+    expect(updatedEntity!.name).toBe('Updated entity');
+    expect(updatedEntity!.price).toBe(200);
   });
 
   test('should throw NotFoundError when entity is not found', async () => {

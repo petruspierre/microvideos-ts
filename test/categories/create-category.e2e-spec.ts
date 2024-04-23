@@ -71,7 +71,7 @@ describe('CategoriesControlelr (e2e)', () => {
           const category = await categoryRepository.findById(new Uuid(id));
 
           const presenter = CategoriesController.serialize(
-            CategoryOutputMapper.toOutput(category),
+            CategoryOutputMapper.toOutput(category!),
           );
           const serialized = instanceToPlain(presenter);
 
