@@ -1,5 +1,5 @@
 import { CategoryId } from '@core/category/domain/category.aggregate';
-import { Genre, GenreId } from '../domain/genre.aggregate';
+import { Genre, GenreId } from '../genre.aggregate';
 
 describe('Genre Unit Tests', () => {
   beforeEach(() => {

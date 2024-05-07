@@ -1,5 +1,5 @@
 import { CategoryId } from '@core/category/domain/category.aggregate';
-import { GenreSearchParams } from '../domain/genre.repository';
+import { GenreSearchParams } from '../genre.repository';
 
 describe('GenreSearchParams', () => {
   describe('create', () => {
