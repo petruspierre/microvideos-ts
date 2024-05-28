@@ -11,6 +11,11 @@ export interface IRepository<E extends Entity, EntityId extends ValueObject> {
 
   findById(entity_id: EntityId): Promise<E | null>;
   findAll(): Promise<E[]>;
+  findByIds(ids: EntityId[]): Promise<E[]>;
+  existsById(ids: EntityId[]): Promise<{
+    exists: EntityId[];
+    not_exists: EntityId[];
+  }>;
 
   getEntity(): new (...args: any[]) => E;
 }
@@ -23,6 +28,5 @@ export interface ISearchableRepository<
   SearchOutput = SearchResult,
 > extends IRepository<E, EntityId> {
   sortableFields: string[];
-
   search(props: SearchInput): Promise<SearchOutput>;
 }

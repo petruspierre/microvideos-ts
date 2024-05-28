@@ -1,10 +1,10 @@
-import { CategoryId } from '@core/category/domain/category.aggregate';
-import { ISearchableRepository } from '@core/shared/domain/repository/repository-interface';
+import { CategoryId } from '../../category/domain/category.aggregate';
+import { ISearchableRepository } from '../../shared/domain/repository/repository-interface';
 import {
   SearchParams,
   SearchParamsConstructorProps,
-} from '@core/shared/domain/repository/search-params';
-import { SearchResult } from '@core/shared/domain/repository/search-result';
+} from '../../shared/domain/repository/search-params';
+import { SearchResult } from '../../shared/domain/repository/search-result';
 import { Genre, GenreId } from './genre.aggregate';
 
 export type GenreFilter = {
@@ -51,12 +51,12 @@ export class GenreSearchParams extends SearchParams<GenreFilter> {
     const filter = {
       ...(_value?.name && { name: `${_value.name}` }),
       ...(_value?.categories_id &&
-        _value?.categories_id.length > 0 && {
+        _value?.categories_id.length && {
           categories_id: _value.categories_id,
         }),
     };
 
-    this._filter = Object.keys(filter).length > 0 ? filter : null;
+    this._filter = Object.keys(filter).length === 0 ? null : filter;
   }
 }
 
